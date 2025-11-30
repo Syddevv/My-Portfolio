@@ -1,138 +1,52 @@
 @import "tailwindcss";
-@tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 210 20% 98%;
-    --foreground: 215 25% 15%;
+/* 1. Load Poppins from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Playball&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Reem+Kufi:wght@400..700&display=swap");
 
-    --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+@theme {
+  /* --- FONTS --- */
+  /* This updates the default 'font-sans' class to use Poppins */
+  --font-poppins: "Poppins", "sans-serif";
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+  /* --- BENTO RADIUS --- */
+  --radius-bento: 1rem; /* 18px */
+  --radius-button: 0.86rem;
 
-    --primary: 210 80% 48%;
-    --primary-foreground: 0 0% 100%;
+  /* --- SHADOWS --- */
+  --shadow-bento: 0 4px 24px 0 rgba(0, 0, 0, 0.03);
+  --shadow-glow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  --shadow-sm: 0 1px 2px 0 hsl(215 25% 15% / 0.03);
+  --shadow-md: 0 4px 6px -1px hsl(215 25% 15% / 0.06),
+    0 2px 4px -2px hsl(215 25% 15% / 0.04);
+  --shadow-lg: 0 10px 15px -3px hsl(215 25% 15% / 0.08),
+    0 4px 6px -4px hsl(215 25% 15% / 0.05);
+  --shadow-xl: 0 20px 25px -5px hsl(215 25% 15% / 0.1),
+    0 8px 10px -6px hsl(215 25% 15% / 0.06);
 
-    --secondary: 180 60% 50%;
-    --secondary-foreground: 0 0% 100%;
+  /* --- COLORS --- */
+  --color-background: #f9fafb; /* Light Gray Background */
+  --color-surface: #ffffff; /* White Card Background */
 
-    --muted: 210 20% 94%;
-    --muted-foreground: 215 15% 45%;
+  --color-foreground: #0f172a; /* Dark Heading Text */
+  --color-muted: #627084; /* Gray Subtitles */
+  --color-border: #e2e8f0; /* Subtle Borders */
 
-    --accent: 180 60% 50%;
-    --accent-foreground: 0 0% 100%;
+  /* Brand Colors */
+  --color-primary: hsl(210, 80%, 48%); /* Royal Blue */
+  --color-primary-foreground: #ffffff;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 215 20% 88%;
-    --input: 215 20% 88%;
-    --ring: 210 80% 48%;
-
-    --radius: 1rem;
-
-    --gradient-primary: linear-gradient(
-      135deg,
-      hsl(210 80% 48%) 0%,
-      hsl(195 75% 55%) 100%
-    );
-    --gradient-card: linear-gradient(
-      145deg,
-      hsl(0 0% 100%) 0%,
-      hsl(210 20% 99%) 100%
-    );
-    --shadow-sm: 0 1px 2px 0 hsl(215 25% 15% / 0.03);
-    --shadow-md: 0 4px 6px -1px hsl(215 25% 15% / 0.06),
-      0 2px 4px -2px hsl(215 25% 15% / 0.04);
-    --shadow-lg: 0 10px 15px -3px hsl(215 25% 15% / 0.08),
-      0 4px 6px -4px hsl(215 25% 15% / 0.05);
-    --shadow-xl: 0 20px 25px -5px hsl(215 25% 15% / 0.1),
-      0 8px 10px -6px hsl(215 25% 15% / 0.06);
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 215 28% 8%;
-    --foreground: 210 20% 95%;
-
-    --card: 215 25% 11%;
-    --card-foreground: 210 20% 95%;
-
-    --popover: 215 25% 11%;
-    --popover-foreground: 210 20% 95%;
-
-    --primary: 210 80% 55%;
-    --primary-foreground: 215 28% 8%;
-
-    --secondary: 180 60% 55%;
-    --secondary-foreground: 215 28% 8%;
-
-    --muted: 215 20% 16%;
-    --muted-foreground: 215 15% 60%;
-
-    --accent: 180 60% 55%;
-    --accent-foreground: 215 28% 8%;
-
-    --destructive: 0 62.8% 50%;
-    --destructive-foreground: 210 20% 95%;
-
-    --border: 215 20% 18%;
-    --input: 215 20% 18%;
-    --ring: 210 80% 55%;
-
-    --gradient-primary: linear-gradient(
-      135deg,
-      hsl(210 80% 55%) 0%,
-      hsl(195 75% 60%) 100%
-    );
-    --gradient-card: linear-gradient(
-      145deg,
-      hsl(215 25% 11%) 0%,
-      hsl(215 25% 13%) 100%
-    );
-    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.2);
-    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.3),
-      0 2px 4px -2px hsl(0 0% 0% / 0.2);
-    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.35),
-      0 4px 6px -4px hsl(0 0% 0% / 0.25);
-    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.4),
-      0 8px 10px -6px hsl(0 0% 0% / 0.3);
-
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+  --color-accent: #2dd4bf; /* Mint Teal */
+  --color-accent-foreground: #ffffff;
 }
 
-@layer utilities {
-  .shadow-bento {
-    box-shadow: var(--shadow-md);
-  }
+@layer base {
+  body {
+    /* Apply variables globally */
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
 
-  .shadow-bento-lg {
-    box-shadow: var(--shadow-lg);
-  }
-
-  .gradient-primary {
-    background: var(--gradient-primary);
-  }
-
-  .gradient-card {
-    background: var(--gradient-card);
+    /* Optional: Poppins looks better with slightly looser tracking (letter-spacing) */
+    letter-spacing: -0.01em;
   }
 }
