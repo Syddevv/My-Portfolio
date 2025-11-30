@@ -30,23 +30,28 @@ const ProfileCard = () => {
 
         {/* Buttons */}
         <div className="w-full grid grid-cols-1 gap-3 pt-4">
-          <Button className="w-full rounded-xl shadow-md" size="lg">
+          <Button className="w-full rounded-md shadow-md" size="lg">
             <Mail className="w-4 h-4 mr-2" />
             Send Email
           </Button>
 
           <div className="grid grid-cols-2 gap-2 pt-2">
-            <button
-              className="bg-surface border border-border 
-             font-medium rounded-sm flex items-center justify-center p-3 gap-3 shadow-md"
+            <Button
+              variant="outline"
+              className="rounded-sm shadow-sm"
+              size="lg"
             >
-              <FileText className="w-5 h-5"></FileText>
+              <FileText className="w-4 h-4 mr-2" />
               Resume
-            </button>
-            <button className="bg-surface border font-medium border-border rounded-sm flex items-center justify-center p-3 gap-3 shadow-md">
+            </Button>
+            <Button
+              variant="outline"
+              className="rounded-sm shadow-sm"
+              size="lg"
+            >
               <FaGithub size={20} />
               GitHub
-            </button>
+            </Button>
           </div>
         </div>
       </div>
