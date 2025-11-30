@@ -32,7 +32,7 @@ const ProfileCard = () => {
         <div className="w-full grid grid-cols-1 gap-3 pt-4">
           <Button className="w-full rounded-md shadow-md" size="lg">
             <Mail className="w-4 h-4 mr-2" />
-            Send Email
+            <p className="font-semibold">Send Email</p>
           </Button>
 
           <div className="grid grid-cols-2 gap-2 pt-2">
@@ -42,7 +42,7 @@ const ProfileCard = () => {
               size="lg"
             >
               <FileText className="w-4 h-4 mr-2" />
-              Resume
+              <p className="font-semibold">Resume</p>
             </Button>
             <Button
               variant="outline"
@@ -50,7 +50,7 @@ const ProfileCard = () => {
               size="lg"
             >
               <FaGithub size={20} />
-              GitHub
+              <p className="font-semibold">GitHub</p>
             </Button>
           </div>
         </div>
