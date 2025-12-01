@@ -16,7 +16,7 @@ import { Button } from "../ui/button";
 import emailjs from "@emailjs/browser";
 
 // IMPORT YOUR RESUME HERE
-import ResumePDF from "../../assets/resume.pdf";
+import ResumePDF from "../../assets/Resume.pdf";
 
 const ProfileCard = () => {
   const [showResume, setShowResume] = useState(false);
