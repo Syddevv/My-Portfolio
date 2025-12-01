@@ -24,8 +24,6 @@ const itemVariants = {
 const Index = () => {
   return (
     <div className="min-h-screen p-4 md:p-8 relative overflow-x-hidden">
-      {/* REMOVED: The Background Decor div was here. Deleting it removes the gradient/blur. */}
-
       <div className="fixed top-6 right-6 z-50">
         <ThemeToggle />
       </div>
@@ -37,13 +35,15 @@ const Index = () => {
         animate="visible"
       >
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-auto">
+          {/* PROFILE */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-1 lg:col-span-1 lg:row-span-2 h-full"
+            className="md:col-span-1 md:row-span-2 lg:col-span-1 lg:row-span-2 h-full"
           >
             <ProfileCard />
           </motion.div>
 
+          {/* STATS */}
           <motion.div
             variants={itemVariants}
             className="md:col-span-1 lg:col-span-1"
@@ -51,6 +51,7 @@ const Index = () => {
             <StatsCard />
           </motion.div>
 
+          {/* ABOUT */}
           <motion.div
             variants={itemVariants}
             className="md:col-span-1 lg:col-span-2"
@@ -58,6 +59,7 @@ const Index = () => {
             <AboutMe />
           </motion.div>
 
+          {/* PROJECTS */}
           <motion.div
             variants={itemVariants}
             className="md:col-span-2 lg:col-span-2"
@@ -65,16 +67,18 @@ const Index = () => {
             <ProjectsCard />
           </motion.div>
 
+          {/* EDUCATION */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-1 lg:col-span-1 lg:row-span-2"
+            className="md:col-span-2 lg:col-span-1 lg:row-span-2"
           >
             <EducationCard />
           </motion.div>
 
+          {/* TECH STACK */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-3 lg:col-span-3"
+            className="md:col-span-1 lg:col-span-3"
           >
             <TechStack />
           </motion.div>
