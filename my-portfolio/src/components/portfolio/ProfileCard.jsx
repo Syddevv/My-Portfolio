@@ -14,6 +14,7 @@ import {
 import { FaGithub, FaFacebook, FaLinkedin, FaTiktok } from "react-icons/fa";
 import { Button } from "../ui/button";
 import emailjs from "@emailjs/browser";
+import toast from "react-hot-toast";
 
 // IMPORT YOUR RESUME HERE
 import ResumePDF from "../../assets/Resume.pdf";
