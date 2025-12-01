@@ -30,7 +30,10 @@ const ProfileCard = () => {
 
         {/* Buttons */}
         <div className="w-full grid grid-cols-1 gap-3 pt-4">
-          <Button className="w-full rounded-md shadow-md" size="lg">
+          <Button
+            className="w-full rounded-md shadow-md cursor-pointer"
+            size="lg"
+          >
             <Mail className="w-4 h-4 mr-2" />
             <p className="font-semibold">Send Email</p>
           </Button>

@@ -1,5 +1,7 @@
 import ProfileCard from "../components/portfolio/ProfileCard";
 import StatsCard from "../components/portfolio/StatsCard";
+import AboutMe from "../components/portfolio/AboutMe";
+import TechStack from "../components/portfolio/TechStack";
 
 const Index = () => {
   return (
@@ -9,8 +11,16 @@ const Index = () => {
           <ProfileCard />
         </div>
 
-        <div className="lg:col-span-1">
+        <div className="md:col-span-1 lg:col-span-1">
           <StatsCard />
+        </div>
+
+        <div className="md:col-span-1 lg:col-span-1">
+          <AboutMe />
+        </div>
+
+        <div className="md:col-span-1 lg:col-span-1">
+          <TechStack />
         </div>
       </div>
     </div>
