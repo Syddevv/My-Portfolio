@@ -5,6 +5,7 @@ import AboutMe from "../components/portfolio/AboutMe";
 import TechStack from "../components/portfolio/TechStack";
 import ProjectsCard from "../components/portfolio/ProjectsCard";
 import EducationCard from "../components/portfolio/EducationCard";
+import ChatBot from "../components/portfolio/ChatBot";
 import { ThemeToggle } from "../components/ui/ThemeToggle";
 
 const containerVariants = {
@@ -78,6 +79,8 @@ const Index = () => {
             <TechStack />
           </motion.div>
         </div>
+
+        <ChatBot />
       </motion.div>
 
       <footer className="text-center text-sm text-muted-foreground pb-8">
