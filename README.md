@@ -23,7 +23,6 @@ This portfolio serves as a central hub to showcase my web development projects, 
 **Frontend:**
 * ![React](https://img.shields.io/badge/-React-61DAFB?style=flat&logo=react&logoColor=black) **React.js (Vite)**
 * ![Tailwind](https://img.shields.io/badge/-Tailwind_CSS_v4-06B6D4?style=flat&logo=tailwindcss&logoColor=white) **Tailwind CSS v4**
-* ![Radix UI](https://img.shields.io/badge/-Radix_UI-161618?style=flat&logo=radix-ui&logoColor=white) **Radix UI / Class Variance Authority**
 * **Lucide React** (Icons)
 
 **Design:**
