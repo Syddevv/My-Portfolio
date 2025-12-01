@@ -138,7 +138,7 @@ const EducationCard = () => {
                     {cert.name}
                   </span>
                 </div>
-                <ExternalLink className="w-3 h-3 text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                <ExternalLink className="w-3 h-3 text-muted-foreground opacity-30 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
               </button>
             ))}
           </div>
