@@ -151,7 +151,7 @@ const ProfileCard = () => {
 
           <div className="w-full grid grid-cols-1 gap-3 pt-8">
             <Button
-              className="w-full rounded-xl h-12 text-base shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all hover:-translate-y-0.5"
+              className="w-full rounded-xl h-12 text-base shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all hover:-translate-y-0.5 cursor-pointer"
               onClick={() => setShowContact(true)}
             >
               <Mail className="w-4 h-4 mr-2" />
