@@ -5,7 +5,7 @@ const projects = [
     title: "SpenSyd",
     desc: "Personal Finance Tracker with AI integration",
     tags: ["MERN Stack", "Gemini API", "Tailwind"],
-    link: "https://spensyd.vercel.app", // FIXED: Added https://
+    link: "https://spensyd.vercel.app",
     color: "text-blue-500",
     bg: "bg-blue-500/10",
   },
@@ -13,13 +13,13 @@ const projects = [
     title: "Let'em Cook",
     desc: "Community Recipe Sharing Platform",
     tags: ["MERN Stack"],
-    link: "https://letem-cook.vercel.app", // FIXED: Added https://
+    link: "https://letem-cook.vercel.app",
     color: "text-orange-500",
     bg: "bg-orange-500/10",
   },
   {
     title: "CraftMySite",
-    desc: "Website Builder",
+    desc: "Template Marketplace & Custom Web Services",
     tags: ["PHP", "MySQL", "Gemini Api"],
     link: "https://github.com/Syddevv/CraftMySite",
     color: "text-purple-500",
