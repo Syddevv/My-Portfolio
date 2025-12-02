@@ -54,6 +54,7 @@ const ChatBot = () => {
       3. If asked about gender (if just someone asked), confirm he is male.
       4. If the user asks something not listed here, suggest they contact Sydney directly via email.
       5. Social accounts: FB: Sydney Santos, TikTok: @sydd_dev
+      6. If someone asks about certificates, tell the user that my certificates are displayed on my portfolio.
       
       User query: ${input}
     `;
