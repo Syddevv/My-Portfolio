@@ -10,7 +10,7 @@
 
 This portfolio serves as a central hub to showcase my web development projects, certifications, and technical expertise. The design is inspired by the "Bento" UI trend—organizing content into clean, modular cards for a structured yet visual experience.
 
-**Live Demo:** [Insert Link Here]
+**Live Demo:** https://syd-portfolio.vercel.app/
 
 ### Key Features
 * **Bento Grid Layout:** A responsive CSS Grid system that adapts from a single column on mobile to a complex 4-column layout on desktop.
