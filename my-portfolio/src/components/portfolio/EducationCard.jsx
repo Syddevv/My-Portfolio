@@ -38,7 +38,7 @@ const EducationCard = () => {
       image: OOPCert,
     },
     {
-      name: "Web Development Class Rank 7",
+      name: "Web Development Class Rank 6",
       color: "text-purple-500",
       image: WebDevCert,
     },
