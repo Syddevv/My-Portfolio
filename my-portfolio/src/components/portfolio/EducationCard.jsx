@@ -121,7 +121,7 @@ const EducationCard = () => {
               <Award className="w-5 h-5 text-blue-500" />
             </div>
             <h2 className="text-xl font-heading font-bold text-foreground">
-              Certifications
+              Achievements
             </h2>
           </div>
 
