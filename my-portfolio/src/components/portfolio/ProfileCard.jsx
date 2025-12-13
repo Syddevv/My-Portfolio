@@ -35,7 +35,7 @@ const ProfileCard = () => {
   });
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("sydnesantos176@gmail.com");
+    navigator.clipboard.writeText("sydneysantos176@gmail.com");
     setCopied(true);
     toast.success("Email copied to clipboard!"); // Added Toast here too
     setTimeout(() => setCopied(false), 2000);
