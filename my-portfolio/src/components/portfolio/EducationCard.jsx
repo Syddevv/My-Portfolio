@@ -38,7 +38,7 @@ const EducationCard = () => {
       image: OOPCert,
     },
     {
-      name: "Web Development Class Rank 7",
+      name: "Web Development Class Rank 6",
       color: "text-purple-500",
       image: WebDevCert,
     },
@@ -121,7 +121,7 @@ const EducationCard = () => {
               <Award className="w-5 h-5 text-blue-500" />
             </div>
             <h2 className="text-xl font-heading font-bold text-foreground">
-              Certifications
+              Achievements
             </h2>
           </div>
 
