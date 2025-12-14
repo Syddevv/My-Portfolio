@@ -57,7 +57,7 @@ const ProfileCard = () => {
       from_email: formData.email,
       subject: formData.subject,
       message: formData.message,
-      to_email: "sydnesantos176@gmail.com",
+      to_email: "sydneysantos176@gmail.com",
     };
 
     emailjs
@@ -265,7 +265,7 @@ const ProfileCard = () => {
 
             <div className="flex items-center justify-between p-3 rounded-xl bg-secondary/20 mb-6 border border-border/50">
               <span className="text-sm font-medium text-muted-foreground truncate">
-                sydnesantos176@gmail.com
+                sydneysantos176@gmail.com
               </span>
               <Button
                 size="sm"
