@@ -1,44 +1,32 @@
 import { Folder, ArrowUpRight } from "lucide-react";
-
-const projects = [
-  {
-    title: "SpenSyd",
-    desc: "Personal Finance Tracker with AI integration",
-    tags: ["MERN Stack", "Gemini API", "Tailwind"],
-    link: "https://spensyd.vercel.app",
-    color: "text-blue-500",
-    bg: "bg-blue-500/10",
-  },
-  {
-    title: "Let'em Cook",
-    desc: "Community Recipe Sharing Platform",
-    tags: ["MERN Stack"],
-    link: "https://letem-cook.vercel.app",
-    color: "text-orange-500",
-    bg: "bg-orange-500/10",
-  },
-  {
-    title: "CraftMySite",
-    desc: "Template Marketplace & Custom Web Services",
-    tags: ["PHP", "MySQL", "Gemini Api"],
-    link: "https://github.com/Syddevv/CraftMySite",
-    color: "text-purple-500",
-    bg: "bg-purple-500/10",
-  },
-];
+import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
+import { FaGithub } from "react-icons/fa";
+import { projectsData } from "../../data/projectsData";
 
 const ProjectsCard = () => {
   return (
     <div className="rounded-2xl bg-card shadow-bento p-6 border border-border gradient-card h-full">
-      <div className="flex items-center gap-2 mb-6">
-        <div className="rounded-lg bg-primary/10 p-2">
-          <Folder className="w-5 h-5 text-primary" />
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-2">
+          <div className="rounded-lg bg-primary/10 p-2">
+            <Folder className="w-5 h-5 text-primary" />
+          </div>
+          <h2 className="text-xl font-bold text-foreground">Recent Projects</h2>
         </div>
-        <h2 className="text-xl font-bold text-foreground">Recent Projects</h2>
+        <Link to="/projects">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-xs text-muted-foreground hover:text-primary cursor-pointer"
+          >
+            View All
+          </Button>
+        </Link>
       </div>
 
       <div className="space-y-4">
-        {projects.map((project, index) => (
+        {projectsData.slice(0, 3).map((project, index) => (
           <a
             key={index}
             href={project.link}
