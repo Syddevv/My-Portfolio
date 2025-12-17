@@ -6,6 +6,7 @@ import { ThemeToggle } from "../components/ui/ThemeToggle";
 import { Link } from "react-router-dom";
 import { projectsData } from "../data/projectsData";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 const fadeRight = {
   hidden: { opacity: 0, x: -30 },
@@ -30,6 +31,10 @@ const itemVariants = {
 };
 
 const Projects = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-5xl mx-auto px-4 py-8">
