@@ -9,7 +9,7 @@ const StatsCard = () => {
             <Briefcase className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <p className="text-3xl font-heading font-bold text-foreground">3</p>
+            <p className="text-3xl font-heading font-bold text-foreground">4</p>
             <p className="text-sm text-muted-foreground font-medium">
               Projects Completed
             </p>
