@@ -37,7 +37,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      className="fixed top-6 right-6 z-50 rounded-full w-12 h-12 bg-background/30 backdrop-blur-md border border-border/50 shadow-2xl hover:bg-accent hover:text-accent-foreground transition-all overflow-hidden"
+      className="relative rounded-full w-12 h-12 bg-background/30 backdrop-blur-md border border-border/50 shadow-2xl hover:bg-accent hover:text-accent-foreground transition-all overflow-hidden"
       aria-label="Toggle Theme"
     >
       <Sun
