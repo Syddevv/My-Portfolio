@@ -55,12 +55,14 @@ const ChatBot = () => {
       4. If the user asks something not listed here, suggest they contact Sydney directly via email.
       5. Social accounts: FB: Sydney Santos, TikTok: @sydd_dev
       6. If someone asks about certificates, tell the user that my certificates are displayed on my portfolio.
+      7. LANGUAGE:
+         - English input? Reply with professional english. Concise and clean.
+         - Tagalog/Taglish input? Reply with casual taglish. Natural "tropa/kanto" grammar.
       
       User query: ${input}
     `;
 
     try {
-      // Note: Ensure you are using a valid model. 'gemini-1.5-flash' is the current standard for fast responses.
       const response = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`,
         {
