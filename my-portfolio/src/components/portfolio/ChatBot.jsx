@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-// 1. Updated imports: removed Loader2, added Dot
-import { MessageCircle, X, Send, Dot, Bot } from "lucide-react";
+import { MessageCircle, X, Send, Loader2, Bot } from "lucide-react";
 import ProfilePic from "../../assets/syd.jpg";
 
 const ChatBot = () => {
@@ -33,8 +32,33 @@ const ChatBot = () => {
     setInput("");
     setIsLoading(true);
 
+    // Context for the AI
     const systemInstruction = `
-      You are Sydney, the owner of this portfolio... (rest of your prompt)
+      You are Sydney, the owner of this portfolio.
+      
+      Here is everything you need to know about Sydney:
+      - **Identity**: Sydney Santos is Full Stack Web Developer and a 3rd-year BS Information Systems student at Bulacan Polytechnic College.
+      - **Location**: Bulacan, Philippines.
+      - **What he offers**: He specializes in building scalable web applications, React expertise, MERN stack development, and modern UI/UX design. He is available for commissions and collaborations.
+      - **Tech Stack**: React, JavaScript, Node.js, Express, MongoDB, Tailwind CSS, PHP, MySQL, Git, and GitHub.
+      - **Key Projects**:
+        1. "SpenSyd" (Personal Finance Tracker with AI integration).
+        2. "Let'em Cook" (Community Recipe Sharing Platform).
+        3. "CraftMySite" (Website Builder using PHP & MySQL).
+      - **Achievements/Certificates**: Top 1 in OOP (JavaScript) class, Rank 7 in Web Development, and a Mini Hackathon winner.
+      - **Contact**: sydneysantos176@gmail.com.
+
+      **Rules**:
+      1. Answer as if you are sydney santos.
+      2. Keep answers brief, professional, and friendly.
+      3. If asked about gender (if just someone asked), confirm that his is pronounce is he/him.
+      4. If the user asks something not listed here, suggest they contact Sydney directly via email.
+      5. Social accounts: FB: Sydney Santos, TikTok: @sydd_dev
+      6. If someone asks about certificates, tell the user that my certificates are displayed on my portfolio.
+      7. LANGUAGE:
+         - English input? Reply with professional english. Concise and clean.
+         - Tagalog/Taglish input? Reply with casual taglish. Natural "tropa/kanto" grammar.
+      
       User query: ${input}
     `;
 
@@ -45,7 +69,15 @@ const ChatBot = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            contents: [{ parts: [{ text: systemInstruction }] }],
+            contents: [
+              {
+                parts: [
+                  {
+                    text: systemInstruction,
+                  },
+                ],
+              },
+            ],
           }),
         }
       );
@@ -71,7 +103,7 @@ const ChatBot = () => {
 
   return (
     <>
-      {/* Floating Action Button */}
+      {/* 1. Floating Action Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed bottom-6 right-6 h-14 flex items-center justify-center shadow-lg transition-all duration-300 z-50 bg-primary text-primary-foreground cursor-pointer ${
@@ -90,9 +122,9 @@ const ChatBot = () => {
         )}
       </button>
 
-      {/* Chat Window */}
+      {/* 2. Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-[90vw] md:w-96 h-[500px] rounded-xl shadow-2xl flex flex-col z-50 overflow-hidden border border-border bg-card text-card-foreground animate-in slide-in-from-bottom-5 duration-300">
+        <div className="fixed bottom-24 right-6 w-[90vw] md:w-96 h-[500px] rounded-xl shadow-2xl flex flex-col z-50 overflow-hidden border border-border bg-card text-card-foreground animate-in slide-in-from-bottom-5 fade-in duration-300">
           {/* Header */}
           <div className="flex justify-between items-center p-4 border-b border-border bg-muted/40">
             <div className="flex items-center gap-3">
@@ -116,7 +148,7 @@ const ChatBot = () => {
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-muted-foreground hover:text-foreground p-1 hover:bg-muted rounded-full"
+              className="text-muted-foreground hover:text-foreground transition-colors p-1 hover:bg-muted rounded-full"
             >
               <X size={18} />
             </button>
@@ -136,6 +168,7 @@ const ChatBot = () => {
                     msg.role === "user" ? "items-end" : "items-start"
                   }`}
                 >
+                  {/* Bot Label & Avatar */}
                   {msg.role === "bot" && (
                     <div className="flex items-center gap-2 mb-1">
                       <img
@@ -148,6 +181,8 @@ const ChatBot = () => {
                       </span>
                     </div>
                   )}
+
+                  {/* Message Bubble */}
                   <div
                     className={`p-3 text-sm leading-relaxed shadow-sm break-words ${
                       msg.role === "user"
@@ -161,39 +196,18 @@ const ChatBot = () => {
               </div>
             ))}
 
-            {/* --- LOADING STATE --- */}
+            {/* Loading State */}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="flex flex-col gap-1">
-                  <div className="flex items-center gap-2 mb-1">
-                    <img
-                      src={ProfilePic}
-                      alt="Sydney"
-                      className="w-6 h-6 rounded-full object-cover"
-                    />
-                    <span className="text-xs text-muted-foreground">
-                      Sydney
-                    </span>
-                  </div>
-                  <div className="bg-muted px-2 py-1.5 rounded-2xl rounded-bl-none flex items-center">
-                    <Dot
-                      className="animate-bounce [animation-delay:-0.3s] text-muted-foreground"
-                      size={24}
-                    />
-                    <Dot
-                      className="animate-bounce [animation-delay:-0.15s] text-muted-foreground ml-[3.5]"
-                      size={24}
-                    />
-                    <Dot
-                      className="animate-bounce text-muted-foreground ml-[3.5]"
-                      size={24}
-                    />
-                  </div>
+                <div className="bg-muted p-3 rounded-2xl rounded-bl-none flex items-center gap-2">
+                  <Loader2
+                    className="animate-spin text-muted-foreground"
+                    size={16}
+                  />
+                  <span className="text-xs text-muted-foreground">Typing</span>
                 </div>
               </div>
             )}
-            {/* ----------------------------- */}
-
             <div ref={messagesEndRef} />
           </div>
 
