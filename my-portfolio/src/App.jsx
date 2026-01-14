@@ -4,7 +4,6 @@ import { ToastContainer } from "react-toastify";
 import Projects from "./pages/Projects";
 import { Routes, Route } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
-
 // import { useEffect, useState } from "react";
 import Snowfall from "react-snowfall";
 
