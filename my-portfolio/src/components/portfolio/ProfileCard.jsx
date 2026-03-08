@@ -199,6 +199,15 @@ const ProfileCard = () => {
                 </a>
               ))}
             </div>
+
+            <div className="mt-6 text-center">
+              <p className="text-sm font-semibold text-foreground">
+                Open to Opportunities
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Internships / Freelance
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -37,22 +37,39 @@ const Projects = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-5xl mx-auto px-4 py-8">
-        {/* Header - Navigation Bar */}
+      {/* Persistent Controls */}
+      <motion.div
+        variants={fadeRight}
+        initial="hidden"
+        animate="visible"
+        className="fixed top-4 left-4 md:top-6 md:left-8 z-50"
+      >
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back
+        </Link>
+      </motion.div>
+
+      <motion.div
+        variants={fadeRight}
+        initial="hidden"
+        animate="visible"
+        className="fixed top-4 right-4 md:top-6 md:right-8 z-50"
+      >
+        <ThemeToggle />
+      </motion.div>
+
+      <div className="max-w-5xl mx-auto px-4 pt-24 pb-8">
+        {/* Header Spacer (controls are fixed) */}
         <motion.div
           variants={fadeRight}
           initial="hidden"
           animate="visible"
-          className="flex items-center justify-between mb-8"
-        >
-          <Link to="/">
-            <Button variant="ghost" size="sm" className="gap-2">
-              <ArrowLeft className="w-4 h-4" />
-              Back
-            </Button>
-          </Link>
-          <ThemeToggle />
-        </motion.div>
+          className="mb-2"
+        />
 
         {/* Title Section */}
         <motion.div

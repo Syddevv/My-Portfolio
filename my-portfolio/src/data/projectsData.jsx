@@ -2,8 +2,21 @@ import LetemCook from "../assets/LetemCook.png";
 import SpenSyd from "../assets/SpenSyd.png";
 import Orbit from "../assets/Orbit.png";
 import CraftMySite from "../assets/CraftMySite.png";
+import Certicode from "../assets/Certicode.png";
 
 export const projectsData = [
+  {
+    title: "Certicode E-commerce",
+    desc: "Full-stack E-commerce Web Application",
+    fulldesc:
+      "A full-stack e-commerce web application I contributed to during my internship. It features product listings, a shopping cart system, and a responsive interface for online shopping.",
+    tags: ["React", "Laravel", "MySQL"],
+    link: "https://commerce.certicode.tech",
+    color: "text-purple-500",
+    bg: "bg-purple-500/10",
+    image: Certicode,
+    github: "https://github.com/Syddevv/Certicode.git",
+  },
   {
     title: "SpenSyd",
     desc: "Personal Finance Tracker with AI integration",

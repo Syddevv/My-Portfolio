@@ -7,6 +7,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import CerticodeIcon from "../../assets/CerticodeProfile.png";
 
 // --- ASSETS ---
 import MiniHackathonCert from "../../assets/Mini Hackathon Cert.png";
@@ -132,9 +133,16 @@ const EducationCard = () => {
           <div className="rounded-xl border border-border/70 bg-secondary/20 p-4 shadow-sm">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="min-w-0">
-                <h3 className="text-lg font-heading font-semibold text-foreground">
-                  Certicode
-                </h3>
+                <div className="flex items-center gap-2">
+                  <img
+                    src={CerticodeIcon}
+                    alt="Certicode"
+                    className="w-6 h-6"
+                  />
+                  <h3 className="text-lg font-heading font-semibold text-foreground">
+                    Certicode
+                  </h3>
+                </div>
                 <p className="mt-1 text-sm text-muted-foreground">
                   Full-stack Web Developer
                 </p>
