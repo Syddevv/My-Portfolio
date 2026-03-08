@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { GraduationCap, Award, X, ExternalLink, Download } from "lucide-react";
+import {
+  GraduationCap,
+  Award,
+  BriefcaseBusiness,
+  X,
+  ExternalLink,
+} from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 // --- ASSETS ---
@@ -17,12 +23,6 @@ const EducationCard = () => {
       degree: "BS Information Systems",
       school: "Bulacan Polytechnic College",
       year: "2023 - Present (3rd Year)",
-    },
-    {
-      id: 2,
-      degree: "STEM Strand",
-      school: "College of Our Lady of Mercy",
-      year: "Graduated 2023",
     },
   ];
 
@@ -47,6 +47,10 @@ const EducationCard = () => {
   return (
     <>
       <div className="rounded-2xl glass-card p-6 h-full flex flex-col gap-6">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground/80">
+          Background
+        </p>
+
         {/* --- EDUCATION SECTION --- */}
         <div>
           <div className="flex items-center gap-3 mb-4">
@@ -109,6 +113,37 @@ const EducationCard = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
+        {/* --- EXPERIENCE SECTION --- */}
+        <div>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="rounded-lg bg-amber-500/10 p-2 ring-1 ring-amber-500/20">
+              <BriefcaseBusiness className="w-5 h-5 text-amber-400" />
+            </div>
+            <h2 className="text-xl font-heading font-bold text-foreground">
+              Experience
+            </h2>
+          </div>
+
+          <div className="rounded-xl border border-border/70 bg-secondary/20 p-4 shadow-sm">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div className="min-w-0">
+                <h3 className="text-lg font-heading font-semibold text-foreground">
+                  Certicode
+                </h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Full-stack Web Developer
+                </p>
+              </div>
+
+              <span className="w-fit shrink-0 rounded-full border border-border bg-background px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
+                Feb 2026 &ndash; Present
+              </span>
+            </div>
           </div>
         </div>
 
