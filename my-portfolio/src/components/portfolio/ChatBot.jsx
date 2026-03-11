@@ -79,7 +79,7 @@ const ChatBot = () => {
               },
             ],
           }),
-        }
+        },
       );
 
       if (!response.ok) throw new Error(`API Error: ${response.status}`);
@@ -90,6 +90,16 @@ const ChatBot = () => {
         "Sorry, I couldn't reach the server.";
 
       setMessages((prev) => [...prev, { role: "bot", text: botReply }]);
+      await fetch("http://localhost:5000/chat-log", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: userMessage.text,
+          response: botReply,
+        }),
+      });
     } catch (error) {
       console.error("Chat Error:", error);
       setMessages((prev) => [
