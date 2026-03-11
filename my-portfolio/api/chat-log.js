@@ -81,12 +81,22 @@ User query: ${message}
 
       let botReply = "Sorry, I couldn't respond right now.";
 
-      if (data.candidates && data.candidates.length > 0) {
-        const parts = data.candidates[0]?.content?.parts;
+      try {
+        const candidate = data?.candidates?.[0];
+        const parts = candidate?.content?.parts;
 
         if (parts && parts.length > 0) {
-          botReply = parts.map((p) => p.text || "").join("");
+          botReply = parts
+            .map((part) => part.text)
+            .filter(Boolean)
+            .join("");
         }
+      } catch (err) {
+        console.error("Gemini parsing error:", err);
+      }
+
+      if (!botReply || botReply.trim() === "") {
+        botReply = "Hi! How can I help you today?";
       }
 
       const chat = new Chat({
