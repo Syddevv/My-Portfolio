@@ -62,6 +62,7 @@ User query: ${message}
           body: JSON.stringify({
             contents: [
               {
+                role: "user",
                 parts: [{ text: systemInstruction }],
               },
             ],
