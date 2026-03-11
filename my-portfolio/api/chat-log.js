@@ -74,9 +74,20 @@ User query: ${message}
       console.log("Gemini status:", geminiResponse.status);
       console.log("Gemini response:", JSON.stringify(data, null, 2));
 
-      const botReply =
-        data.candidates?.[0]?.content?.parts?.[0]?.text ||
-        "Sorry, I couldn't respond right now.";
+      if (!geminiResponse.ok) {
+        console.error("Gemini API error:", data);
+        throw new Error("Gemini request failed");
+      }
+
+      let botReply = "Sorry, I couldn't respond right now.";
+
+      if (data.candidates && data.candidates.length > 0) {
+        const parts = data.candidates[0]?.content?.parts;
+
+        if (parts && parts.length > 0) {
+          botReply = parts.map((p) => p.text || "").join("");
+        }
+      }
 
       const chat = new Chat({
         message,
