@@ -52,7 +52,6 @@ Rules:
 
 User query: ${message}
 `;
-
       const geminiResponse = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
         {
@@ -63,11 +62,7 @@ User query: ${message}
           body: JSON.stringify({
             contents: [
               {
-                parts: [
-                  {
-                    text: systemInstruction,
-                  },
-                ],
+                parts: [{ text: systemInstruction }],
               },
             ],
           }),
@@ -75,6 +70,9 @@ User query: ${message}
       );
 
       const data = await geminiResponse.json();
+
+      console.log("Gemini status:", geminiResponse.status);
+      console.log("Gemini response:", JSON.stringify(data, null, 2));
 
       const botReply =
         data.candidates?.[0]?.content?.parts?.[0]?.text ||
