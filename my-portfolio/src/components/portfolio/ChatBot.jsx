@@ -14,8 +14,6 @@ const ChatBot = () => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
-  const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -32,74 +30,22 @@ const ChatBot = () => {
     setInput("");
     setIsLoading(true);
 
-    // Context for the AI
-    const systemInstruction = `
-      You are Sydney, the owner of this portfolio.
-      
-      Here is everything you need to know about Sydney:
-      - **Identity**: Sydney Santos is Full Stack Web Developer and a 3rd-year BS Information Systems student at Bulacan Polytechnic College.
-      - **Location**: Bulacan, Philippines.
-      - **What he offers**: He specializes in building scalable web applications, React expertise, MERN stack development, and modern UI/UX design. He is available for commissions and collaborations.
-      - **Tech Stack**: React, JavaScript, Node.js, Express, MongoDB, Tailwind CSS, PHP, MySQL, Git, and GitHub.
-      - **Key Projects**:
-        1. "SpenSyd" (Personal Finance Tracker with AI integration).
-        2. "Let'em Cook" (Community Recipe Sharing Platform).
-        3. "CraftMySite" (Website Builder using PHP & MySQL).
-      - **Achievements/Certificates**: Top 1 in OOP (JavaScript) class, Rank 7 in Web Development, and a Mini Hackathon winner.
-      - **Contact**: sydneysantos176@gmail.com.
-
-      **Rules**:
-      1. Answer as if you are sydney santos.
-      2. Keep answers brief, professional, and friendly.
-      3. If asked about gender (if just someone asked), confirm that his is pronounce is he/him.
-      4. If the user asks something not listed here, suggest they contact Sydney directly via email.
-      5. Social accounts: FB: Sydney Santos, TikTok: @sydd_dev
-      6. If someone asks about certificates, tell the user that my certificates are displayed on my portfolio.
-      7. LANGUAGE:
-         - English input? Reply with professional english. Concise and clean.
-         - Tagalog/Taglish input? Reply with casual taglish. Natural "tropa/kanto" grammar.
-      
-      User query: ${input}
-    `;
-
     try {
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [
-              {
-                parts: [
-                  {
-                    text: systemInstruction,
-                  },
-                ],
-              },
-            ],
-          }),
-        },
-      );
-
-      if (!response.ok) throw new Error(`API Error: ${response.status}`);
-
-      const data = await response.json();
-      const botReply =
-        data.candidates?.[0]?.content?.parts?.[0]?.text ||
-        "Sorry, I couldn't reach the server.";
-
-      setMessages((prev) => [...prev, { role: "bot", text: botReply }]);
-      await fetch("http://localhost:5000/chat-log", {
+      const response = await fetch("/api/chat-log", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: userMessage.text,
-          response: botReply,
+          message: input,
         }),
       });
+
+      const data = await response.json();
+
+      const botReply = data.reply;
+
+      setMessages((prev) => [...prev, { role: "bot", text: botReply }]);
     } catch (error) {
       console.error("Chat Error:", error);
       setMessages((prev) => [
