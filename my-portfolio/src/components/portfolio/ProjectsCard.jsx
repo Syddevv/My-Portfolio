@@ -41,7 +41,7 @@ const ProjectsCard = () => {
                   <Folder size={18} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors"> 
                     {project.title}
                   </h3>
                   <p className="text-sm text-muted-foreground line-clamp-1">

@@ -139,22 +139,23 @@ const Projects = () => {
                       </a>
                     </Button>
 
-                    {project.title !== "CraftMySite" && (
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 opacity-60 hover:opacity-100"
-                      >
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="block p-4 rounded-xl bg-secondary/5 border border-transparent hover:border-border hover:bg-secondary/10 transition-all"
+                    {project.title !== "CraftMySite" &&
+                      project.title !== "EduTrack" && (
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8 opacity-60 hover:opacity-100"
                         >
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
-                      </Button>
-                    )}
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="block p-4 rounded-xl bg-secondary/5 border border-transparent hover:border-border hover:bg-secondary/10 transition-all"
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                          </a>
+                        </Button>
+                      )}
                   </div>
                 </div>
 

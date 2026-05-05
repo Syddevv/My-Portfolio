@@ -3,8 +3,20 @@ import SpenSyd from "../assets/SpenSyd.png";
 import Orbit from "../assets/Orbit.png";
 import CraftMySite from "../assets/CraftMySite.png";
 import Certicode from "../assets/Certicode.png";
+import EduTrack from "../assets/EduTrack.png";
 
 export const projectsData = [
+  {
+    title: "EduTrack",
+    desc: "Academic management system for attendance, classes, and reports",
+    fulldesc:
+      "EduTrack is a web-based system that helps teachers and administrators record attendance, manage classes, and generate real-time reports. It provides clear dashboards to monitor student performance and identify at-risk students.",
+    tags: ["React", "TypeScript", "PHP", "MySQL"],
+    color: "text-orange-500",
+    bg: "bg-orange-500/10",
+    image: EduTrack,
+    github: "https://github.com/Syddevv/edutrack-frontend",
+  },
   {
     title: "Certicode E-commerce",
     desc: "Full-stack E-commerce Web Application",
@@ -47,7 +59,6 @@ export const projectsData = [
     fulldesc:
       "Comprehensive web platform bridging the gap between professional web development services and customizable digital products.",
     tags: ["PHP", "MySQL", "Gemini Api"],
-    link: "https://github.com/Syddevv/CraftMySite",
     color: "text-purple-500",
     bg: "bg-purple-500/10",
     image: CraftMySite,

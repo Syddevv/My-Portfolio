@@ -149,7 +149,7 @@ const EducationCard = () => {
               </div>
 
               <span className="w-fit shrink-0 rounded-full border border-border bg-background px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
-                Feb 2026 &ndash; Present
+                Feb 2026 &ndash; May 2026
               </span>
             </div>
           </div>
