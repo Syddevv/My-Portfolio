@@ -10,6 +10,7 @@ import { IoLogoJavascript } from "react-icons/io5";
 import {
   SiExpress,
   SiMongodb,
+  SiNextdotjs,
   SiTailwindcss,
   SiTypescript,
 } from "react-icons/si";
@@ -35,6 +36,12 @@ const technologies = [
     bg: "bg-green-500/10 border-green-200/20",
   },
   {
+    icon: SiNextdotjs,
+    name: "Next.js",
+    color: "text-foreground",
+    bg: "bg-gray-500/10 border-gray-200/20",
+  },
+  {
     icon: SiExpress,
     name: "Express",
     color: "text-gray-500",
@@ -45,6 +52,12 @@ const technologies = [
     name: "MongoDB",
     color: "text-green-600",
     bg: "bg-green-600/10 border-green-200/20",
+  },
+  {
+    icon: SiTypescript,
+    name: "TypeScript",
+    color: "text-sky-500",
+    bg: "bg-sky-500/10 border-sky-200/20",
   },
   {
     icon: SiTailwindcss,
