@@ -7,7 +7,7 @@ const ChatBot = () => {
   const [messages, setMessages] = useState([
     {
       role: "bot",
-      text: "Hi there! 👋🏻 Thanks for visiting my website. Feel free to ask me anything about programming, web development, or what do I offer. Let me know how I can help!",
+      text: "Hello. I’m Syd's AI assistant. I can help with his portfolio, projects, skills, experience, and other professional work-related questions.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -175,7 +175,7 @@ const ChatBot = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                placeholder="Ask something..."
+                placeholder="Ask about projects, skills, or experience..."
                 className="w-full bg-background text-foreground border border-input rounded-full py-3 pl-4 pr-12 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
               />
               <button
