@@ -40,19 +40,32 @@ Known Tech Stack:
 - Node.js
 - Express
 - MongoDB
+- React Native
+- TypeScript
 - Tailwind CSS
 - PHP
 - MySQL
+- SQLite
+- Supabase
+- Laravel
+- Socket.io
 - Git
 - GitHub
+- AI-assisted development with Codex and v0 by Vercel
 
 Known Projects:
-1. EduTrack - Academic management system for attendance, classes, and reports.
-2. Certicode E-commerce - Full-stack e-commerce web application.
-3. SpenSyd - Personal finance tracker with AI integration.
-4. Let'em Cook - Community recipe sharing platform.
-5. CraftMySite - Template marketplace and custom web services.
-6. Orbit - Modern anonymous chat app.
+Project Ordering:
+- The projects are ordered from most recent to older work.
+- The most recent project is the first project in the portfolio data: Eyrie.
+
+Known Projects:
+1. Eyrie - An AI-assisted, offline-first personal finance mobile app built with React Native, TypeScript, SQLite, and Supabase. It focuses on expense tracking, budgets, savings, local storage, secure syncing, and a smooth mobile experience.
+2. EduTrack - An academic management system for attendance, classes, and reports. It helps teachers and administrators monitor student performance and identify at-risk students.
+3. Certicode E-commerce - A full-stack e-commerce web application built during internship work. It includes product listings, a shopping cart, and a responsive shopping experience.
+4. SpenSyd - A personal finance tracker with AI integration that helps users manage spending and income more efficiently.
+5. Let'em Cook - A community recipe sharing platform for home cooks to publish and explore culinary content.
+6. CraftMySite - A template marketplace and custom web services platform for digital products and professional website solutions.
+7. Orbit - A modern anonymous chat app designed for serendipitous real-time connections.
 `;
 
 const greetingPatterns = [
@@ -129,6 +142,19 @@ function isScopeQuestion(message) {
     "php",
     "mysql",
     "tailwind",
+    "typescript",
+    "react native",
+    "sqlite",
+    "supabase",
+    "laravel",
+    "socket.io",
+    "recent",
+    "latest",
+    "newest",
+    "mobile",
+    "finance",
+    "budget",
+    "eyrie",
     "edutrack",
     "certicode",
     "spensyd",
