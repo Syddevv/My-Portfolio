@@ -1,4 +1,4 @@
-import { Folder, ArrowUpRight } from "lucide-react";
+import { Folder, ArrowUpRight, Lock } from "lucide-react";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
@@ -26,13 +26,8 @@ const ProjectsCard = () => {
       </div>
 
       <div className="space-y-4">
-        {projectsData.slice(0, 3).map((project, index) => (
-          <a
-            key={index}
-            href={project.link}
-            target="_blank"
-            className="group block p-4 rounded-xl bg-secondary/5  border border-transparent hover:border-border hover:bg-secondary/10 transition-all"
-          >
+        {projectsData.slice(0, 3).map((project, index) => {
+          const cardContent = (
             <div className="flex items-start justify-between">
               <div className="flex items-start gap-3">
                 <div
@@ -41,7 +36,7 @@ const ProjectsCard = () => {
                   <Folder size={18} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors"> 
+                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
                   <p className="text-sm text-muted-foreground line-clamp-1">
@@ -59,10 +54,33 @@ const ProjectsCard = () => {
                   </div>
                 </div>
               </div>
-              <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              {project.link ? (
+                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              ) : (
+                <Lock className="w-4 h-4 text-muted-foreground" />
+              )}
             </div>
-          </a>
-        ))}
+          );
+
+          return project.link ? (
+            <a
+              key={index}
+              href={project.link}
+              target="_blank"
+              rel="noreferrer"
+              className="group block p-4 rounded-xl bg-secondary/5 border border-transparent hover:border-border hover:bg-secondary/10 transition-all"
+            >
+              {cardContent}
+            </a>
+          ) : (
+            <div
+              key={index}
+              className="group block p-4 rounded-xl bg-secondary/5 border border-transparent hover:border-border hover:bg-secondary/10 transition-all"
+            >
+              {cardContent}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

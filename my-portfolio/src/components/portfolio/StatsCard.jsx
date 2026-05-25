@@ -26,7 +26,7 @@ const StatsCard = () => {
 
           <div>
             <p className="text-3xl font-heading font-bold text-foreground">
-              10
+              12
             </p>
             <p className="text-sm text-muted-foreground font-medium">
               Technologies Stack

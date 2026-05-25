@@ -1,7 +1,7 @@
 import React from "react";
 import { FaGithub } from "react-icons/fa";
 import { Button } from "../components/ui/button";
-import { Folder, ArrowLeft, ExternalLink } from "lucide-react";
+import { Folder, ArrowLeft, ExternalLink, Lock } from "lucide-react";
 import { ThemeToggle } from "../components/ui/ThemeToggle";
 import { Link } from "react-router-dom";
 import { projectsData } from "../data/projectsData";
@@ -139,23 +139,33 @@ const Projects = () => {
                       </a>
                     </Button>
 
-                    {project.title !== "CraftMySite" &&
-                      project.title !== "EduTrack" && (
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-8 w-8 opacity-60 hover:opacity-100"
+                    {project.link ? (
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 opacity-60 hover:opacity-100"
+                      >
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="block p-4 rounded-xl bg-secondary/5 border border-transparent hover:border-border hover:bg-secondary/10 transition-all"
                         >
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="block p-4 rounded-xl bg-secondary/5 border border-transparent hover:border-border hover:bg-secondary/10 transition-all"
-                          >
-                            <ExternalLink className="w-4 h-4" />
-                          </a>
-                        </Button>
-                      )}
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        disabled
+                        className="h-8 w-8 opacity-60"
+                      >
+                        <span className="block p-4 rounded-xl bg-secondary/5 border border-transparent text-muted-foreground">
+                          <Lock className="w-4 h-4" />
+                        </span>
+                      </Button>
+                    )}
                   </div>
                 </div>
 
