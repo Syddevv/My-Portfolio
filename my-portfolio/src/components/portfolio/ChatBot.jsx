@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Loader2, Bot } from "lucide-react";
+import { MessageCircle, X, Send } from "lucide-react";
 import ProfilePic from "../../assets/syd.jpg";
 
 const ChatBot = () => {
@@ -155,12 +155,17 @@ const ChatBot = () => {
             {/* Loading State */}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-muted p-3 rounded-2xl rounded-bl-none flex items-center gap-2">
-                  <Loader2
-                    className="animate-spin text-muted-foreground"
-                    size={16}
-                  />
-                  <span className="text-xs text-muted-foreground">Typing</span>
+                <div className="bg-muted px-4 py-3 rounded-2xl rounded-bl-none flex items-center gap-1.5">
+                  {[0, 1, 2].map((dot) => (
+                    <span
+                      key={dot}
+                      className="h-2 w-2 rounded-full bg-muted-foreground/80 animate-bounce"
+                      style={{
+                        animationDelay: `${dot * 0.15}s`,
+                        animationDuration: "0.9s",
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
             )}
