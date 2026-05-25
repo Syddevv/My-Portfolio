@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import CerticodeIcon from "../../assets/CerticodeProfile.png";
-import OjtCertificate from "../../assets/Certificate of Completion - Sydney Santos .pdf";
+import OjtCertificate from "../../assets/Cetificate of Completion.png";
 
 // --- ASSETS ---
 import MiniHackathonCert from "../../assets/Mini Hackathon Cert.png";
@@ -167,7 +167,7 @@ const EducationCard = () => {
                     aria-label="View Certificate"
                     onClick={() =>
                       setSelectedPreview({
-                        type: "pdf",
+                        type: "image",
                         src: OjtCertificate,
                         title: "Certificate of Completion",
                       })
