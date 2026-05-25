@@ -1,4 +1,4 @@
-import { Folder, ArrowUpRight, Lock } from "lucide-react";
+import { Folder, ExternalLink, Lock } from "lucide-react";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
@@ -55,7 +55,7 @@ const ProjectsCard = () => {
                 </div>
               </div>
               {project.link ? (
-                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
               ) : (
                 <Lock className="w-4 h-4 text-muted-foreground" />
               )}

@@ -4,8 +4,21 @@ import Orbit from "../assets/Orbit.png";
 import CraftMySite from "../assets/CraftMySite.png";
 import Certicode from "../assets/Certicode.png";
 import EduTrack from "../assets/EduTrack.png";
+import Eyrie from "../assets/Eyrie.png";
 
 export const projectsData = [
+  {
+    title: "Eyrie",
+    desc: "AI-assisted offline-first personal finance mobile app",
+    fulldesc:
+      "Eyrie is an offline-first personal finance mobile app for tracking expenses, budgets, savings, and financial activity. It was developed using an AI-assisted workflow with Codex for development and v0 by Vercel for prototyping, while focusing on local storage, secure syncing, and a smooth mobile experience.",
+    tags: ["React Native", "TypeScript", "SQLite", "Supabase", "AI-Assisted"],
+    link: "https://apkpure.com/p/com.sydu.eyrie",
+    color: "text-green-500",
+    bg: "bg-green-500/10",
+    image: Eyrie,
+    github: "https://github.com/Syddevv/eyrie",
+  },
   {
     title: "EduTrack",
     desc: "Academic management system for attendance, classes, and reports",
