@@ -25,7 +25,12 @@ const ChatBot = () => {
   const sendMessage = async () => {
     if (!input.trim()) return;
 
-    const userMessage = { role: "user", text: input };
+    const trimmedInput = input.trim();
+    const userMessage = { role: "user", text: trimmedInput };
+    const conversationHistory = [...messages, userMessage]
+      .slice(-8)
+      .map(({ role, text }) => ({ role, text }));
+
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setIsLoading(true);
@@ -37,7 +42,8 @@ const ChatBot = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: input,
+          message: trimmedInput,
+          history: conversationHistory,
         }),
       });
 

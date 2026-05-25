@@ -129,8 +129,12 @@ function isIdentityQuestion(message) {
   return identityPatterns.some((pattern) => normalized.includes(pattern));
 }
 
+function normalizeMessage(message) {
+  return message.toLowerCase().trim();
+}
+
 function isScopeQuestion(message) {
-  const normalized = message.toLowerCase();
+  const normalized = normalizeMessage(message);
   const scopedKeywords = [
     "portfolio",
     "project",
@@ -207,6 +211,44 @@ function isScopeQuestion(message) {
   return scopedKeywords.some((keyword) => normalized.includes(keyword));
 }
 
+function isLikelyFollowUp(message) {
+  const normalized = normalizeMessage(message).replace(
+    /[^\p{L}\p{N}\s']/gu,
+    "",
+  );
+
+  const followUpPhrases = [
+    "tell me about it",
+    "tell me more",
+    "what about it",
+    "what about him",
+    "what does he do",
+    "what projects",
+    "which project",
+    "experience",
+    "more",
+    "and",
+    "why",
+    "how so",
+    "can you expand",
+    "go on",
+    "what else",
+  ];
+
+  return (
+    followUpPhrases.some((phrase) => normalized === phrase) ||
+    normalized.split(/\s+/).length <= 4
+  );
+}
+
+function hasPortfolioContext(history = []) {
+  return history.some(
+    (entry) =>
+      typeof entry?.text === "string" &&
+      (isScopeQuestion(entry.text) || entry.role === "bot"),
+  );
+}
+
 function pickVariant(message, variants) {
   const seed = [...message].reduce((sum, char) => sum + char.charCodeAt(0), 0);
   return variants[seed % variants.length];
@@ -231,23 +273,37 @@ function getIdentityReply(message) {
 
 function getRedirectReply(message) {
   return pickVariant(message, [
-    "I’m here mainly to help with Syd's portfolio and development work. If you'd like, I can tell you about his projects, skills, or experience.",
-    "That’s not really what I cover here, but I can help you explore Syd's apps, tech stack, or background.",
-    "I’m focused on Syd's work and portfolio. Want a quick overview of his projects or the technologies he uses?",
-    "I keep the conversation centered on Syd's portfolio and professional work. Ask me about his projects, experience, or tools.",
+    "I mainly focus on Syd's development work and portfolio. Want to hear about his projects, experience, or tech stack?",
+    "That’s a bit outside what I cover here, but I’d be glad to walk you through Syd's apps, background, or skills.",
+    "I’m best at helping with Syd's work, projects, and experience. Want a quick overview?",
+    "Happy to help with Syd's portfolio and professional background. You can ask about his projects, internship, or tools.",
   ]);
 }
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const { message } = req.body;
+      const { message, history = [] } = req.body;
 
       if (!message || typeof message !== "string") {
         return res.status(400).json({ error: "Message is required" });
       }
 
       const trimmedMessage = message.trim();
+      const safeHistory = Array.isArray(history)
+        ? history
+            .filter(
+              (entry) =>
+                entry &&
+                (entry.role === "user" || entry.role === "bot") &&
+                typeof entry.text === "string",
+            )
+            .slice(-8)
+        : [];
+      const canInferFromContext =
+        safeHistory.length > 0 &&
+        hasPortfolioContext(safeHistory) &&
+        isLikelyFollowUp(trimmedMessage);
 
       let instantReply = null;
 
@@ -255,7 +311,7 @@ export default async function handler(req, res) {
         instantReply = getGreetingReply(trimmedMessage);
       } else if (isIdentityQuestion(trimmedMessage)) {
         instantReply = getIdentityReply(trimmedMessage);
-      } else if (!isScopeQuestion(trimmedMessage)) {
+      } else if (!isScopeQuestion(trimmedMessage) && !canInferFromContext) {
         instantReply = getRedirectReply(trimmedMessage);
       }
 
@@ -284,14 +340,25 @@ Behavior Rules:
 - If asked whether the user is speaking to Sydney or to an AI, clearly say that you are Sydney Santos's AI assistant.
 - Always refer to Sydney Santos using masculine pronouns only: he, him, his.
 - For simple greetings, respond warmly first, then naturally guide the conversation toward his portfolio or work.
+- Prioritize being helpful before redirecting.
+- Infer user intent whenever possible, especially for short or vague follow-up messages.
+- Use the recent conversation context to resolve references like "it", "that", "what projects", or "experience?".
 - Do not answer unrelated, inappropriate, overly personal, or unprofessional questions.
-- If a question is outside scope, redirect naturally and politely without sounding defensive, repetitive, or robotic.
+- If a question is outside scope, redirect naturally and briefly without sounding defensive, repetitive, or robotic.
 - Avoid repeating phrases like "I can only help", "I only provide", or "That is outside my scope" unless truly necessary.
 - Do not invent facts, personal details, or background information that are not present in the portfolio context.
 - If the answer is not available from the provided context, say that you do not have that information and offer help with portfolio-related topics instead.
 - Vary sentence structure naturally so replies do not sound copy-pasted.
 - Keep answers modern, human-like, and useful.
+- Keep replies short to medium length unless the user clearly asks for more detail.
 `;
+      const conversationContext = safeHistory
+        .map(
+          (entry) =>
+            `${entry.role === "user" ? "User" : "Assistant"}: ${entry.text}`,
+        )
+        .join("\n");
+
       const geminiResponse = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
         {
@@ -306,7 +373,13 @@ Behavior Rules:
             contents: [
               {
                 role: "user",
-                parts: [{ text: trimmedMessage }],
+                parts: [
+                  {
+                    text: conversationContext
+                      ? `Recent conversation:\n${conversationContext}\n\nCurrent user message: ${trimmedMessage}`
+                      : `Current user message: ${trimmedMessage}`,
+                  },
+                ],
               },
             ],
           }),
