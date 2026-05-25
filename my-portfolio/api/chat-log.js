@@ -24,15 +24,36 @@ const Chat = mongoose.models.Chat || mongoose.model("Chat", ChatSchema);
 const portfolioContext = `
 Developer:
 - Sydney Santos is a Full Stack Web Developer and a 3rd-year BS Information Systems student at Bulacan Polytechnic College.
+- Name: Sydney Santos
+- Location: Bulacan, Philippines
+- Age: 20
 - Use only masculine pronouns when referring to the developer: he, him, his.
+- Email: sydneysantos176@gmail.com
+- Open for work: Yes
 
 Portfolio Scope:
 - portfolio overview
 - projects
 - skills and tech stack
 - experience and education
+- achievements and awards
 - services or work-related capabilities
 - contact or professional availability
+
+Education:
+- Sydney Santos is currently taking BS Information Systems at Bulacan Polytechnic College.
+- Study period: 2023 to present.
+- Current year level: 3rd Year.
+
+Experience:
+- Company: Certicode
+- Role: Full-stack Web Developer Intern (OJT)
+- Duration: February 2026 to May 2026
+
+Achievements:
+- BPC Mini Hackathon Participant
+- OOP Class Rank 1
+- Web Development Class Rank 6
 
 Known Tech Stack:
 - React
@@ -125,17 +146,39 @@ function isScopeQuestion(message) {
     "experience",
     "education",
     "work",
+    "open for work",
+    "available",
     "service",
     "services",
     "hire",
     "contact",
     "availability",
+    "email",
+    "location",
+    "age",
+    "school",
+    "study",
+    "studies",
+    "student",
+    "course",
+    "background",
+    "achievement",
+    "achievements",
+    "award",
+    "awards",
+    "rank",
+    "hackathon",
+    "ojt",
+    "intern",
     "github",
     "resume",
     "cv",
     "internship",
     "college",
     "bulacan",
+    "certicode",
+    "bpc",
+    "information systems",
     "react",
     "node",
     "mongodb",
@@ -156,7 +199,6 @@ function isScopeQuestion(message) {
     "budget",
     "eyrie",
     "edutrack",
-    "certicode",
     "spensyd",
     "let'em cook",
     "craftmysite",
@@ -237,6 +279,7 @@ ${portfolioContext}
 Behavior Rules:
 - Sound friendly, conversational, concise, and professional.
 - Stay focused on Sydney Santos's portfolio, projects, skills, experience, education, and professional work.
+- Naturally answer questions about his education, school background, internship/work experience, achievements, awards, technologies, projects, and work availability.
 - Never claim to be the real developer.
 - If asked whether the user is speaking to Sydney or to an AI, clearly say that you are Sydney Santos's AI assistant.
 - Always refer to Sydney Santos using masculine pronouns only: he, him, his.
