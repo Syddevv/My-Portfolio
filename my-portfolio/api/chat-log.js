@@ -55,9 +55,48 @@ Known Projects:
 6. Orbit - Modern anonymous chat app.
 `;
 
+const greetingPatterns = [
+  "hello",
+  "hi",
+  "hey",
+  "yo",
+  "good morning",
+  "good afternoon",
+  "good evening",
+  "what's up",
+  "whats up",
+  "sup",
+  "kamusta",
+];
+
+const identityPatterns = [
+  "who are you",
+  "are you ai",
+  "is this ai",
+  "are you the developer",
+  "am i talking to",
+  "is this sydney",
+  "is this syd",
+  "is this the developer",
+  "are you syd",
+  "are you sydney",
+];
+
+function isGreeting(message) {
+  const normalized = message
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s']/gu, "")
+    .trim();
+  return greetingPatterns.some((pattern) => normalized === pattern);
+}
+
+function isIdentityQuestion(message) {
+  const normalized = message.toLowerCase();
+  return identityPatterns.some((pattern) => normalized.includes(pattern));
+}
+
 function isScopeQuestion(message) {
   const normalized = message.toLowerCase();
-
   const scopedKeywords = [
     "portfolio",
     "project",
@@ -97,37 +136,38 @@ function isScopeQuestion(message) {
     "craftmysite",
     "orbit",
   ];
-
-  const identityKeywords = [
-    "are you",
-    "who are you",
-    "is this ai",
-    "are you ai",
-    "are you the developer",
-    "am i talking to",
-    "is this sydney",
-    "is this syd",
-  ];
-
-  return (
-    scopedKeywords.some((keyword) => normalized.includes(keyword)) ||
-    identityKeywords.some((keyword) => normalized.includes(keyword))
-  );
+  return scopedKeywords.some((keyword) => normalized.includes(keyword));
 }
 
-function getScopedFallback(message) {
-  const normalized = message.toLowerCase();
+function pickVariant(message, variants) {
+  const seed = [...message].reduce((sum, char) => sum + char.charCodeAt(0), 0);
+  return variants[seed % variants.length];
+}
 
-  if (
-    normalized.includes("are you") ||
-    normalized.includes("who are you") ||
-    normalized.includes("ai") ||
-    normalized.includes("developer")
-  ) {
-    return "You’re speaking with Sydney Santos’s AI assistant. I can help with his portfolio, projects, skills, experience, and other work-related information.";
-  }
+function getGreetingReply(message) {
+  return pickVariant(message, [
+    "Hey! Feel free to ask about Syd's projects, tech stack, or experience.",
+    "Hi! I can help you explore Syd's portfolio and development work.",
+    "Hello. Want to know about his apps, skills, or experience?",
+    "Hey there. Ask me about Syd's projects, background, or the tools he works with.",
+  ]);
+}
 
-  return "I can only help with Sydney Santos’s portfolio, projects, skills, experience, and professional work. If you’d like, ask about his projects, tech stack, or background.";
+function getIdentityReply(message) {
+  return pickVariant(message, [
+    "You're chatting with Syd's AI assistant. I can help you explore his portfolio, projects, skills, and experience.",
+    "This is Syd's AI assistant, not Syd himself. I can walk you through his work, stack, and background.",
+    "You're speaking with Syd's portfolio assistant. Ask me about his projects, tech stack, or professional experience.",
+  ]);
+}
+
+function getRedirectReply(message) {
+  return pickVariant(message, [
+    "I’m here mainly to help with Syd's portfolio and development work. If you'd like, I can tell you about his projects, skills, or experience.",
+    "That’s not really what I cover here, but I can help you explore Syd's apps, tech stack, or background.",
+    "I’m focused on Syd's work and portfolio. Want a quick overview of his projects or the technologies he uses?",
+    "I keep the conversation centered on Syd's portfolio and professional work. Ask me about his projects, experience, or tools.",
+  ]);
 }
 
 export default async function handler(req, res) {
@@ -139,17 +179,28 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: "Message is required" });
       }
 
-      if (!isScopeQuestion(message)) {
-        const botReply = getScopedFallback(message);
+      const trimmedMessage = message.trim();
+
+      let instantReply = null;
+
+      if (isGreeting(trimmedMessage)) {
+        instantReply = getGreetingReply(trimmedMessage);
+      } else if (isIdentityQuestion(trimmedMessage)) {
+        instantReply = getIdentityReply(trimmedMessage);
+      } else if (!isScopeQuestion(trimmedMessage)) {
+        instantReply = getRedirectReply(trimmedMessage);
+      }
+
+      if (instantReply) {
 
         const chat = new Chat({
-          message,
-          response: botReply,
+          message: trimmedMessage,
+          response: instantReply,
         });
 
         await chat.save();
 
-        return res.status(200).json({ reply: botReply });
+        return res.status(200).json({ reply: instantReply });
       }
 
       const systemInstruction = `
@@ -158,18 +209,19 @@ You are the AI assistant for Sydney Santos's portfolio website. You are not Sydn
 ${portfolioContext}
 
 Behavior Rules:
-- Stay strictly focused on Sydney Santos's portfolio, projects, skills, experience, education, and professional work only.
+- Sound friendly, conversational, concise, and professional.
+- Stay focused on Sydney Santos's portfolio, projects, skills, experience, education, and professional work.
 - Never claim to be the real developer.
 - If asked whether the user is speaking to Sydney or to an AI, clearly say that you are Sydney Santos's AI assistant.
 - Always refer to Sydney Santos using masculine pronouns only: he, him, his.
-- Maintain a professional, friendly, and concise tone.
+- For simple greetings, respond warmly first, then naturally guide the conversation toward his portfolio or work.
 - Do not answer unrelated, inappropriate, overly personal, or unprofessional questions.
-- If a question is outside scope, politely explain that you only provide information related to the portfolio and Sydney Santos's work, then redirect to a relevant topic.
+- If a question is outside scope, redirect naturally and politely without sounding defensive, repetitive, or robotic.
+- Avoid repeating phrases like "I can only help", "I only provide", or "That is outside my scope" unless truly necessary.
 - Do not invent facts, personal details, or background information that are not present in the portfolio context.
 - If the answer is not available from the provided context, say that you do not have that information and offer help with portfolio-related topics instead.
-- Match the user's language where reasonable, but keep the tone professional.
-
-User query: ${message}
+- Vary sentence structure naturally so replies do not sound copy-pasted.
+- Keep answers modern, human-like, and useful.
 `;
       const geminiResponse = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
@@ -179,10 +231,13 @@ User query: ${message}
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            systemInstruction: {
+              parts: [{ text: systemInstruction }],
+            },
             contents: [
               {
                 role: "user",
-                parts: [{ text: systemInstruction }],
+                parts: [{ text: trimmedMessage }],
               },
             ],
           }),
@@ -220,7 +275,7 @@ User query: ${message}
       }
 
       const chat = new Chat({
-        message,
+        message: trimmedMessage,
         response: botReply,
       });
 

@@ -72,7 +72,7 @@ const ChatBot = () => {
           <div className="flex items-center gap-2">
             <MessageCircle size={24} />
             <span className="font-semibold whitespace-nowrap">
-              Chat with Syd
+              Syd's Assistant
             </span>
           </div>
         )}
@@ -92,7 +92,7 @@ const ChatBot = () => {
                 />
               </div>
               <div>
-                <h3 className="font-semibold text-sm">Chat with Syd</h3>
+                <h3 className="font-semibold text-sm">Syd's Assistant</h3>
                 <p className="text-xs text-muted-foreground flex items-center gap-1">
                   <span className="relative flex h-1.5 w-1.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
