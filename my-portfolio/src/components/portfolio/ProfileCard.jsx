@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ProfilePic from "../../assets/syd.jpg";
+import ProfilePic from "../../assets/Syd Portfolio Avatar.jpg";
 import {
   MapPin,
   Mail,
@@ -67,7 +67,7 @@ const ProfileCard = () => {
           serviceID,
           autoReplyTemplateID,
           templateParams,
-          publicKey
+          publicKey,
         );
       })
       .then(() => {

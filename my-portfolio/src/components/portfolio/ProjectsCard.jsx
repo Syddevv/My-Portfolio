@@ -28,21 +28,21 @@ const ProjectsCard = () => {
       <div className="space-y-4">
         {projectsData.slice(0, 3).map((project, index) => {
           const cardContent = (
-            <div className="flex items-start justify-between">
-              <div className="flex items-start gap-3">
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex min-w-0 flex-1 items-start gap-3">
                 <div
-                  className={`mt-1 p-2 rounded-md ${project.bg} ${project.color}`}
+                  className={`mt-1 shrink-0 rounded-md p-2 ${project.bg} ${project.color}`}
                 >
                   <Folder size={18} />
                 </div>
-                <div>
+                <div className="min-w-0 flex-1">
                   <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground line-clamp-1">
+                  <p className="truncate text-sm text-muted-foreground">
                     {project.desc}
                   </p>
-                  <div className="flex gap-2 mt-2">
+                  <div className="mt-2 flex flex-wrap gap-2">
                     {project.tags.map((tag, i) => (
                       <span
                         key={i}
@@ -55,9 +55,9 @@ const ProjectsCard = () => {
                 </div>
               </div>
               {project.link ? (
-                <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                <ExternalLink className="mt-1 h-4 w-4 shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
               ) : (
-                <Lock className="w-4 h-4 text-muted-foreground" />
+                <Lock className="mt-1 h-4 w-4 shrink-0 text-muted-foreground" />
               )}
             </div>
           );
