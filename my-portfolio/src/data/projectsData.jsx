@@ -5,8 +5,21 @@ import CraftMySite from "../assets/CraftMySite.png";
 import Certicode from "../assets/Certicode.png";
 import EduTrack from "../assets/EduTrack.png";
 import Eyrie from "../assets/Eyrie.png";
+import FloodWatchPH from "../assets/FloodwatchPH.png";
 
 export const projectsData = [
+  {
+    title: "FloodWatch PH",
+    desc: "Community-powered flood monitoring and reporting platform",
+    fulldesc:
+      "FloodWatch PH is a public web platform that helps communities monitor flood conditions across the Philippines. Users can view community-submitted flood reports on an interactive map, report new incidents with photos and location data, verify existing reports, check nearby evacuation centers, monitor weather conditions, and access flood-related information through a mobile-friendly interface designed for fast and reliable public use.",
+    tags: ["Next.js", "TypeScript", "Prisma", "Supabase", "AI-Assisted"],
+    link: "https://flood-watch-ph.vercel.app",
+    color: "text-blue-500",
+    bg: "bg-blue-500/10",
+    image: FloodWatchPH,
+    github: "https://github.com/Syddevv/Flood-Watch-PH",
+  },
   {
     title: "Eyrie",
     desc: "AI-assisted offline-first personal finance mobile app",
