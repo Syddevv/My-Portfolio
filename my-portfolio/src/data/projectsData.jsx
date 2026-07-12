@@ -26,7 +26,7 @@ export const projectsData = [
     fulldesc:
       "Eyrie is an offline-first personal finance mobile app for tracking expenses, budgets, savings, and financial activity. It was developed using an AI-assisted workflow with Codex for development and v0 by Vercel for prototyping, while focusing on local storage, secure syncing, and a smooth mobile experience.",
     tags: ["React Native", "TypeScript", "SQLite", "Supabase", "AI-Assisted"],
-    link: "https://apkpure.com/p/com.sydu.eyrie",
+    link: "https://eyrie-website.vercel.app/",
     color: "text-green-500",
     bg: "bg-green-500/10",
     image: Eyrie,
