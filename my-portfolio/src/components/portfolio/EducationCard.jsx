@@ -134,7 +134,7 @@ const EducationCard = () => {
           <motion.div
             whileHover={{ y: -2 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="rounded-xl border border-white/10 bg-white/[0.03] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-xl"
+            className="rounded-xl border border-white/10 bg-white/[0.03] p-4 shadow-[0_4px_14px_rgba(0,0,0,0.08)] backdrop-blur-xl"
           >
             <div className="flex items-start gap-3">
               <img

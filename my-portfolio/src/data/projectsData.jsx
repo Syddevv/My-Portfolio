@@ -49,7 +49,6 @@ export const projectsData = [
     fulldesc:
       "A full-stack e-commerce web application I contributed to during my internship. It features product listings, a shopping cart system, and a responsive interface for online shopping.",
     tags: ["React", "Laravel", "MySQL"],
-    link: "https://commerce.certicode.tech",
     color: "text-purple-500",
     bg: "bg-purple-500/10",
     image: Certicode,

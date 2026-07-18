@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion as Motion, useReducedMotion } from "framer-motion";
 import ProfileCard from "../components/portfolio/ProfileCard";
 import StatsCard from "../components/portfolio/StatsCard";
 import AboutMe from "../components/portfolio/AboutMe";
@@ -21,71 +22,110 @@ const itemVariants = {
   visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100 } },
 };
 
+const mobileItemVariants = {
+  hidden: { y: 24, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const useMobileLayout = () => {
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window === "undefined"
+      ? false
+      : window.matchMedia("(max-width: 767px)").matches,
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const handleChange = (event) => setIsMobile(event.matches);
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  return isMobile;
+};
+
 const Index = () => {
+  const isMobile = useMobileLayout();
+  const shouldReduceMotion = useReducedMotion();
+  const revealOnScroll = isMobile && !shouldReduceMotion;
+  const itemMotionProps = revealOnScroll
+    ? {
+        variants: mobileItemVariants,
+        initial: "hidden",
+        whileInView: "visible",
+        viewport: { once: true, amount: 0.12, margin: "0px 0px -40px 0px" },
+      }
+    : { variants: itemVariants };
+
   return (
     <div className="min-h-screen p-4 md:p-8 relative overflow-x-hidden">
       <div className="fixed top-6 right-6 z-50">
         <ThemeToggle />
       </div>
 
-      <motion.div
+      <Motion.div
         className="container max-w-7xl mx-auto pb-20 "
         variants={containerVariants}
-        initial="hidden"
-        animate="visible"
+        initial={isMobile || shouldReduceMotion ? undefined : "hidden"}
+        animate={isMobile || shouldReduceMotion ? undefined : "visible"}
       >
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-auto">
           {/* PROFILE */}
-          <motion.div
-            variants={itemVariants}
+          <Motion.div
+            {...itemMotionProps}
             className="md:col-span-1 md:row-span-2 lg:col-span-1 lg:row-span-2 h-full"
           >
             <ProfileCard />
-          </motion.div>
+          </Motion.div>
 
           {/* STATS */}
-          <motion.div
-            variants={itemVariants}
+          <Motion.div
+            {...itemMotionProps}
             className="md:col-span-1 lg:col-span-1"
           >
             <StatsCard />
-          </motion.div>
+          </Motion.div>
 
           {/* ABOUT */}
-          <motion.div
-            variants={itemVariants}
+          <Motion.div
+            {...itemMotionProps}
             className="md:col-span-1 lg:col-span-2"
           >
             <AboutMe />
-          </motion.div>
+          </Motion.div>
 
           {/* PROJECTS */}
-          <motion.div
-            variants={itemVariants}
+          <Motion.div
+            {...itemMotionProps}
             className="md:col-span-2 lg:col-span-2"
           >
             <ProjectsCard />
-          </motion.div>
+          </Motion.div>
 
           {/* EDUCATION */}
-          <motion.div
-            variants={itemVariants}
+          <Motion.div
+            {...itemMotionProps}
             className="md:col-span-2 lg:col-span-1 lg:row-span-2"
           >
             <EducationCard />
-          </motion.div>
+          </Motion.div>
 
           {/* TECH STACK */}
-          <motion.div
-            variants={itemVariants}
+          <Motion.div
+            {...itemMotionProps}
             className="md:col-span-1 lg:col-span-3"
           >
             <TechStack />
-          </motion.div>
+          </Motion.div>
         </div>
 
         <ChatBot />
-      </motion.div>
+      </Motion.div>
 
       <footer className="text-center text-sm text-muted-foreground pb-8">
         <p>© 2025 Sydney Santos. Built with React & Tailwind.</p>
